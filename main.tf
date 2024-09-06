@@ -182,7 +182,7 @@ resource "google_cloud_run_v2_service" "nginx_service" {
     }
     vpc_access {
       network_interfaces {
-        network = data.google_compute_subnetwork.subnet.network
+        network = regex("projects.*", data.google_compute_subnetwork.subnet.network)
         subnetwork = data.google_compute_subnetwork.subnet.name
       }
       egress = "ALL_TRAFFIC"
