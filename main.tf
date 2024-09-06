@@ -85,6 +85,7 @@ resource "google_iap_web_backend_service_iam_binding" "lb_iap_binding" {
 
 data "google_compute_subnetwork" "subnet" {
   project     = var.project
+  region      = var.region
   name        = var.subnet
 }
 
