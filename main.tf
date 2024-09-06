@@ -290,7 +290,7 @@ resource "google_compute_target_https_proxy" "https_proxy" {
   url_map                     = google_compute_url_map.url_map.id
 
   server_tls_policy           = null
-  ssl_certificates            = [google_compute_managed_ssl_certificate.certificate.id]
+  ssl_certificates            = [google_compute_managed_ssl_certificate.ingress_certificate.id]
   ssl_policy                  = null
 }
 
