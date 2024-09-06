@@ -240,6 +240,7 @@ resource "google_compute_backend_service" "backend_service" {
   }
 
   iap {
+    enabled = true
     oauth2_client_id              = var.oauth_client_id
     oauth2_client_secret          = var.oauth_client_secret
   }
@@ -346,7 +347,7 @@ resource "google_compute_router_nat" "egress_nat" {
   router                              = google_compute_router.egress_router.name
 
   nat_ip_allocate_option              = "MANUAL_ONLY"
-  nat_ips                             = [google_compute_address.cr_static_ip_address.self_link]
+  nat_ips                             = [google_compute_address.egress_ip.self_link]
 
   source_subnetwork_ip_ranges_to_nat  = "LIST_OF_SUBNETWORKS"
   subnetwork {
