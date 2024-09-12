@@ -134,6 +134,7 @@ resource "google_cloud_run_v2_service" "nginx_service" {
   location     = var.region
   name         = "${var.tunnel_name}-nginx-service"
   project      = var.project
+  deletion_protection = false
   template {
     containers {
       image = "docker.io/nginx:1.27.1"
