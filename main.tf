@@ -294,7 +294,7 @@ resource "google_compute_target_https_proxy" "https_proxy" {
 
   server_tls_policy                 = null
   # certificate_manager_certificates  = [var.certificate_id]
-  certificate_map                   = var.certificate_map_id
+  certificate_map                   = "//certificatemanager.googleapis.com/${var.certificate_map_id}"
   ssl_policy                        = null
 }
 
