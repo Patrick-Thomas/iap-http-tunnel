@@ -93,12 +93,12 @@ data "google_compute_subnetwork" "subnet" {
 # IP addresses
 #
 
-resource "google_compute_address" "ingress_ip" {
+resource "google_compute_global_address" "ingress_ip" {
   provider            = google-beta
   name                = "${var.tunnel_name}-ingress-ip"
   project             = var.project
-  region              = var.region
-  network_tier        = "PREMIUM"
+  # region              = var.region
+  # network_tier        = "PREMIUM"
 }
 
 resource "google_compute_address" "egress_ip" {
@@ -312,7 +312,7 @@ resource "google_compute_global_forwarding_rule" "forwarding_rule_http" {
   load_balancing_scheme   = "EXTERNAL"
   port_range              = "80"
   target                  = google_compute_target_http_proxy.http_proxy.id
-  ip_address              = google_compute_address.ingress_ip.address 
+  ip_address              = google_compute_global_address.ingress_ip.address 
   # network_tier            = "PREMIUM"
 }
 
@@ -326,7 +326,7 @@ resource "google_compute_global_forwarding_rule" "forwarding_rule_https" {
   load_balancing_scheme   = "EXTERNAL"
   port_range              = "443"
   target                  = google_compute_target_https_proxy.https_proxy.id
-  ip_address              = google_compute_address.ingress_ip.address
+  ip_address              = google_compute_global_address.ingress_ip.address
   # network_tier            = "PREMIUM" 
 }
 
