@@ -113,15 +113,15 @@ resource "google_compute_address" "egress_ip" {
 # Google managed SSL certificate
 #
 
-resource "google_compute_managed_ssl_certificate" "ingress_certificate" {
-  name                      = "${var.tunnel_name}-ingress-certificate"
-  project                   = var.project
-  type                      = "MANAGED"
+# resource "google_compute_managed_ssl_certificate" "ingress_certificate" {
+#   name                      = "${var.tunnel_name}-ingress-certificate"
+#   project                   = var.project
+#   type                      = "MANAGED"
 
-  managed {
-      domains = var.domains
-  }
-}
+#   managed {
+#       domains = var.domains
+#   }
+# }
 
 #
 # Cloud Run service
@@ -293,7 +293,7 @@ resource "google_compute_target_https_proxy" "https_proxy" {
   url_map                     = google_compute_url_map.url_map.id
 
   server_tls_policy           = null
-  ssl_certificates            = [google_compute_managed_ssl_certificate.ingress_certificate.id]
+  ssl_certificates            = [var.certificate_id]
   ssl_policy                  = null
 }
 
