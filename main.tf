@@ -309,7 +309,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule_http" {
   region                  = var.region
 
   ip_protocol             = "TCP"
-  load_balancing_scheme   = "EXTERNAL"
+  load_balancing_scheme   = "EXTERNAL_MANAGED"
   port_range              = "80"
   target                  = google_compute_target_http_proxy.http_proxy.id
   ip_address              = google_compute_address.ingress_ip.address 
@@ -323,7 +323,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule_https" {
   region                  = var.region
 
   ip_protocol             = "TCP"
-  load_balancing_scheme   = "EXTERNAL"
+  load_balancing_scheme   = "EXTERNAL_MANAGED"
   port_range              = "443"
   target                  = google_compute_target_https_proxy.https_proxy.id
   ip_address              = google_compute_address.ingress_ip.address
