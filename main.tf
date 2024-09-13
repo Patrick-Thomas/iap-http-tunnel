@@ -98,7 +98,7 @@ resource "google_compute_address" "ingress_ip" {
   name                = "${var.tunnel_name}-ingress-ip"
   project             = var.project
   region              = var.region
-  network_tier        = "STANDARD"
+  network_tier        = "PREMIUM"
 }
 
 resource "google_compute_address" "egress_ip" {
@@ -313,7 +313,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule_http" {
   port_range              = "80"
   target                  = google_compute_target_http_proxy.http_proxy.id
   ip_address              = google_compute_address.ingress_ip.address 
-  network_tier            = "STANDARD"
+  network_tier            = "PREMIUM"
 }
 
 resource "google_compute_forwarding_rule" "forwarding_rule_https" {
@@ -327,7 +327,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule_https" {
   port_range              = "443"
   target                  = google_compute_target_https_proxy.https_proxy.id
   ip_address              = google_compute_address.ingress_ip.address
-  network_tier            = "STANDARD" 
+  network_tier            = "PREMIUM" 
 }
 
 #
