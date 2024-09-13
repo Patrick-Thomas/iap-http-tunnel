@@ -43,3 +43,8 @@ variable "oauth_client_secret" {
 	description 	= "OAuth client secret. Keep this value private"
 	type 			= string
 }
+
+variable "certificate_id" {
+	description 	= "Google managed certificate id"
+	type 			= string
+}
