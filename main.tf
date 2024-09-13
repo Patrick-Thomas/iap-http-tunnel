@@ -302,32 +302,32 @@ resource "google_compute_target_https_proxy" "https_proxy" {
 # Forwarding rules
 #
 
-resource "google_compute_forwarding_rule" "forwarding_rule_http" {
+resource "google_compute_global_forwarding_rule" "forwarding_rule_http" {
   provider                = google-beta
   name                    = "${var.tunnel_name}-forwarding-rule-http"
   project                 = var.project
-  region                  = var.region
+  # region                  = var.region
 
   ip_protocol             = "TCP"
-  load_balancing_scheme   = "EXTERNAL_MANAGED"
+  load_balancing_scheme   = "EXTERNAL"
   port_range              = "80"
   target                  = google_compute_target_http_proxy.http_proxy.id
   ip_address              = google_compute_address.ingress_ip.address 
-  network_tier            = "PREMIUM"
+  # network_tier            = "PREMIUM"
 }
 
-resource "google_compute_forwarding_rule" "forwarding_rule_https" {
+resource "google_compute_global_forwarding_rule" "forwarding_rule_https" {
   provider                = google-beta
   name                    = "${var.tunnel_name}-forwarding-rule-https"
   project                 = var.project
-  region                  = var.region
+  # region                  = var.region
 
   ip_protocol             = "TCP"
-  load_balancing_scheme   = "EXTERNAL_MANAGED"
+  load_balancing_scheme   = "EXTERNAL"
   port_range              = "443"
   target                  = google_compute_target_https_proxy.https_proxy.id
   ip_address              = google_compute_address.ingress_ip.address
-  network_tier            = "PREMIUM" 
+  # network_tier            = "PREMIUM" 
 }
 
 #
