@@ -44,7 +44,7 @@ variable "oauth_client_secret" {
 	type 			= string
 }
 
-variable "certificate_id" {
-	description 	= "Google managed certificate id"
+variable "certificate_map_id" {
+	description 	= "Google managed certificate map id"
 	type 			= string
 }
