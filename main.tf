@@ -287,14 +287,14 @@ resource "google_compute_target_http_proxy" "http_proxy" {
 }
 
 resource "google_compute_target_https_proxy" "https_proxy" {
-  provider                    = google-beta
-  name                        = "${var.tunnel_name}-https-proxy"
-  project                     = var.project
-  url_map                     = google_compute_url_map.url_map.id
+  provider                          = google-beta
+  name                              = "${var.tunnel_name}-https-proxy"
+  project                           = var.project
+  url_map                           = google_compute_url_map.url_map.id
 
-  server_tls_policy           = null
-  ssl_certificates            = [var.certificate_id]
-  ssl_policy                  = null
+  server_tls_policy                 = null
+  certificate_manager_certificates  = [var.certificate_id]
+  ssl_policy                        = null
 }
 
 #
