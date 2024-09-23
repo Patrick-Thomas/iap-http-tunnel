@@ -254,9 +254,19 @@ resource "google_compute_backend_service" "backend_service" {
 
 resource "google_compute_url_map" "url_map" {
   provider                  = google-beta
-  default_service           = google_compute_backend_service.backend_service.id
+  # default_service           = google_compute_backend_service.backend_service.id
   name                      = "${var.tunnel_name}-url-map"
   project                   = var.project
+
+  host_rule {
+    hosts                   = [var.domain]
+    path_matcher            = "main"
+  }
+
+  path_matcher {
+    name = "main"
+    default_service         = google_compute_backend_service.backend_service.id
+  }
 }
 
 resource "google_compute_url_map" "https_redirect" {

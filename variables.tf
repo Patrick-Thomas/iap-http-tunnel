@@ -29,9 +29,9 @@ variable "iap_users" {
 	type			= list(string)
 }
 
-variable "domains" {
-	description 	= "Domains used for ingress traffic"
-	type 			= list(string)
+variable "domain" {
+	description 	= "Domain used for ingress traffic"
+	type 			= string
 }
 
 variable "oauth_client_id" {
